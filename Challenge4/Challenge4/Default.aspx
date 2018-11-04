@@ -29,19 +29,19 @@
             </p>
         </div>
         <asp:RadioButtonList ID="CrustRadioButtonList" runat="server" OnSelectedIndexChanged="CrustRadioButtonList_SelectedIndexChanged">
-            <asp:ListItem Value="0">Thin Crust</asp:ListItem>
-            <asp:ListItem Selected="True" Value="2">Deep Dish (+$2)</asp:ListItem>
+            <asp:ListItem Value="false">Thin Crust</asp:ListItem>
+            <asp:ListItem Selected="True" Value="true">Deep Dish (+$2)</asp:ListItem>
         </asp:RadioButtonList>
         <br />
-        <asp:CheckBoxList ID="ToppingCheckBoxList" runat="server" OnSelectedIndexChanged="ToppingCheckBoxList_SelectedIndexChanged">
-            <asp:ListItem Value="1.5">Pepperoni (+$1.50)</asp:ListItem>
-            <asp:ListItem Value="0.75">Onions (+$0.75)</asp:ListItem>
-            <asp:ListItem Value="0.50">Green Peppers (+$0.50)</asp:ListItem>
-            <asp:ListItem Value="0.75">Red Peppers (+$0.75)</asp:ListItem>
-            <asp:ListItem Value="2"> Anchovies (+$2)</asp:ListItem>
-        </asp:CheckBoxList>
+        
         <h2><span class="auto-style2">Papa Bob&#39;s </span><span class="auto-style1">Special Deal</span></h2>
-        <p>
+        <p><asp:CheckBoxList ID="ToppingCheckBoxList" runat="server" OnSelectedIndexChanged="ToppingCheckBoxList_SelectedIndexChanged">
+            <asp:ListItem Value="Pepperoni">Pepperoni (+$1.50)</asp:ListItem>
+            <asp:ListItem Value="Onions">Onions (+$0.75)</asp:ListItem>
+            <asp:ListItem Value="GreenPeppers">Green Peppers (+$0.50)</asp:ListItem>
+            <asp:ListItem Value="RedPeppers">Red Peppers (+$0.75)</asp:ListItem>
+            <asp:ListItem Value="Anchovies"> Anchovies (+$2)</asp:ListItem>
+        </asp:CheckBoxList>
             Save $2 when you add Pepperoni, Green Peppers and Anchovies OR Pepperoni, Red Peppers and Onions to your pizza.</p>
         <p>
             <asp:Button ID="resultButton" runat="server" Text="Purchase" OnClick="resultButton_Click" />

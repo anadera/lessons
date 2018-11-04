@@ -5,56 +5,61 @@ using System.Web;
 
 namespace Challenge4
 {
-    class Pizza
+    public class Pizza
     {
-        int Size { get; set; }
-        eCrust Crust { get; set; }
-        Dictionary<eToping, double> Toping { get; set; }
+        public int Size { get; set; }
+        public bool DeepCrust { get; set; }
+        public Dictionary<eToping, double> Toping { get; set; }
+        //public double Cost { get;  }
 
-        private bool GetSale(Pizza p)
+        public Pizza ( int size, bool crust)
+        {
+            Size = size;
+            DeepCrust = crust;
+            Toping = new Dictionary<eToping, double>();           
+        }
+
+        private bool GetSale()
         {
             bool result;
-            if (p.Toping.ContainsKey(eToping.Pepperoni) && p.Toping.ContainsKey(eToping.GreenPeppers) && p.Toping.ContainsKey(eToping.Anchovies))
+            if (this.Toping.ContainsKey(eToping.Pepperoni) && this.Toping.ContainsKey(eToping.GreenPeppers) && this.Toping.ContainsKey(eToping.Anchovies))
                 result = true;
-            else if (p.Toping.ContainsKey(eToping.Pepperoni) && p.Toping.ContainsKey(eToping.RedPeppers) && p.Toping.ContainsKey(eToping.Onions))
+            else if (this.Toping.ContainsKey(eToping.Pepperoni) && this.Toping.ContainsKey(eToping.RedPeppers) && this.Toping.ContainsKey(eToping.Onions))
                 result = true;
             else
                 result = false;
             return result;
         }
 
-        private double myGetCost(Pizza p)
+        public string TopingTotext()
         {
-            double result = 0;
-            result += (double)p.Size;
-            if (p.Crust == eCrust.Deep)
-                result += 2.0;
-            if (p.Toping.Count != 0)
-                result += p.Toping.Sum(v => v.Value);
-            if (GetSale(p))
-                result -= 2;
+            string result = "";
+            foreach (KeyValuePair <eToping,double> entry in this.Toping)
+                result = result + entry.Key.ToString();
             return result;
         }
-
-        public double GetCost(Pizza p)
+        
+        public double GetCost()
         {
-            return myGetCost(p);
+            double result = 0;
+            result += this.Size;
+            if (this.DeepCrust) 
+                result += 2;
+            if (this.Toping.Count != 0)
+                result += this.Toping.Sum(v => v.Value);
+            if (GetSale())
+                result -= 2;
+            return result;
         }       
 
     }
 
-    enum eToping
+    public enum eToping
     {
         Pepperoni,
         Onions,
         GreenPeppers,
         RedPeppers,
         Anchovies
-    }
-
-    enum eCrust
-    {
-        Thin,
-        Deep
-    }
+    }   
 }

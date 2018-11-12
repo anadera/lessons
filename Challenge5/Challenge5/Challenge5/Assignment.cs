@@ -14,18 +14,18 @@ namespace Challenge5
         public DateTime ProjectedEndDateNA { get; set; }
         //public int Budget;
 
-        public Assignment(string spyName, string name, DateTime startDateNA, DateTime endDatePA, DateTime projectedEndDateNA)
+        public Assignment(string spyName, string name, DateTime endDatePA, DateTime startDateNA, DateTime projectedEndDateNA)
         {
             this.SpyName = spyName;
             this.Name = name;
-            this.StartDateNA = startDateNA;
             this.EndDatePA = endDatePA;
+            this.StartDateNA = startDateNA;           
             this.ProjectedEndDateNA = projectedEndDateNA;
         }
 
         public bool CheckValidDate()
         {
-            TimeSpan t = this.EndDatePA.Subtract(this.StartDateNA);            
+            TimeSpan t = this.StartDateNA.Subtract(this.EndDatePA);            
             int result = TimeSpan.Compare(t, TimeSpan.FromDays(14));
             if (result >= 0)
                 return true;

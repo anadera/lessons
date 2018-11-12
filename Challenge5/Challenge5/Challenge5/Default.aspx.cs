@@ -29,11 +29,7 @@ namespace Challenge5
                 projectedEndCalendar.SelectedDate);
             string result;
             if (a.CheckValidDate() == false)
-                result = string.Format("{0} {1} {2} {3} \nError. Must allow at least two weeks between previous assignment and new assignment.",
-                    a.EndDatePA.ToShortDateString(),
-                    a.StartDateNA.ToShortDateString(),
-                    a.ProjectedEndDateNA.ToShortDateString(),
-                    a.EndDatePA.Subtract(a.StartDateNA).ToString());
+                result = "Error. Must allow at least two weeks between previous assignment and new assignment.";
             else
                 result = string.Format("Assignment of {0} to assignment {1} is authorized. Budget total: {2:C}",
                     a.SpyName, a.Name, a.CalculateBudget());
